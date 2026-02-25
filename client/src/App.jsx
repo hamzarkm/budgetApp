@@ -41,31 +41,33 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-ctp-base">
-      <header className="bg-ctp-mantle border-b border-ctp-surface0">
+    <div className="min-h-screen bg-bg-primary">
+      <header className="border-b border-border" style={{ background: 'linear-gradient(180deg, rgba(99,102,241,0.03) 0%, transparent 100%)' }}>
         <div className="max-w-5xl mx-auto px-4 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-8 rounded-full bg-ctp-lavender" />
-            <h1 className="text-xl font-bold text-ctp-text tracking-tight">MonBudget</h1>
+            <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
+              <span className="text-white text-sm font-bold">M</span>
+            </div>
+            <h1 className="text-lg font-semibold text-text-primary tracking-tight">MonBudget</h1>
           </div>
           <MonthPicker value={currentMonth} onChange={setCurrentMonth} />
         </div>
       </header>
 
-      <nav className="bg-ctp-mantle/80 backdrop-blur-sm border-b border-ctp-surface0 sticky top-0 z-10">
+      <nav className="border-b border-border sticky top-0 z-10 bg-bg-primary/80 backdrop-blur-xl">
         <div className="max-w-5xl mx-auto px-4 flex gap-1 overflow-x-auto">
           {tabs.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
               onClick={() => setActiveTab(id)}
               className={`relative flex items-center gap-2 px-5 py-3.5 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                activeTab === id ? 'text-ctp-lavender' : 'text-ctp-overlay0 hover:text-ctp-subtext1'
+                activeTab === id ? 'text-accent-indigo' : 'text-text-muted hover:text-text-secondary'
               }`}
             >
-              <Icon size={16} />
+              <Icon size={15} />
               {label}
               {activeTab === id && (
-                <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-ctp-lavender rounded-full" />
+                <span className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full" style={{ background: 'linear-gradient(90deg, #6366f1, #8b5cf6)' }} />
               )}
             </button>
           ))}
@@ -74,27 +76,13 @@ export default function App() {
 
       <main className="max-w-5xl mx-auto px-4 py-8">
         {activeTab === 'overview' && (
-          <Dashboard
-            incomes={incomes}
-            charges={charges}
-            planned={planned}
-            settings={settings}
-            currentMonth={currentMonth}
-          />
+          <Dashboard incomes={incomes} charges={charges} planned={planned} settings={settings} currentMonth={currentMonth} />
         )}
         {activeTab === 'recurring' && (
-          <RecurringManager
-            incomes={incomes}
-            charges={charges}
-            onRefresh={refreshRecurring}
-          />
+          <RecurringManager incomes={incomes} charges={charges} onRefresh={refreshRecurring} />
         )}
         {activeTab === 'planned' && (
-          <PlannedExpenses
-            planned={planned}
-            currentMonth={currentMonth}
-            onRefresh={refreshPlanned}
-          />
+          <PlannedExpenses planned={planned} currentMonth={currentMonth} onRefresh={refreshPlanned} />
         )}
       </main>
     </div>

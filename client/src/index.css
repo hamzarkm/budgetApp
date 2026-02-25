@@ -3,43 +3,81 @@
 @tailwind utilities;
 
 body {
-  background-color: #1e1e2e;
-  color: #cdd6f4;
+  background-color: #0a0a0f;
+  color: #f0f0f5;
   font-family: 'Inter', system-ui, sans-serif;
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-in {
-  animation: fadeUp 0.35s ease-out both;
+  animation: fadeUp 0.4s ease-out both;
 }
 
-.animate-in-delay-1 { animation-delay: 0.07s; }
-.animate-in-delay-2 { animation-delay: 0.14s; }
-.animate-in-delay-3 { animation-delay: 0.21s; }
+.animate-in-delay-1 { animation-delay: 0.08s; }
+.animate-in-delay-2 { animation-delay: 0.16s; }
+.animate-in-delay-3 { animation-delay: 0.24s; }
 
 .card {
-  @apply bg-ctp-mantle border border-ctp-surface0 rounded-2xl transition-all duration-200;
+  background: linear-gradient(145deg, rgba(18, 18, 26, 0.9), rgba(14, 14, 20, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
 }
 
 .card:hover {
-  border-color: #45475a;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.06);
 }
 
-input:focus, select:focus {
-  box-shadow: 0 0 0 3px rgba(180, 190, 254, 0.12);
+.btn-gradient {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+.input-field {
+  background: rgba(22, 22, 31, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #f0f0f5;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.input-field::placeholder {
+  color: #555570;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.8);
+  filter: invert(0.7);
   cursor: pointer;
 }
 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #45475a; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #585b70; }
+::-webkit-scrollbar-thumb { background: #2a2a3d; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a50; }

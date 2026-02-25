@@ -10,27 +10,19 @@ export default function MonthPicker({ value, onChange }) {
 
   const shift = (delta) => {
     const d = new Date(year, month - 1 + delta, 1);
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    onChange(`${y}-${m}`);
+    onChange(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
   };
 
   return (
-    <div className="flex items-center gap-1 bg-ctp-surface0/50 rounded-xl px-1 py-1">
-      <button
-        onClick={() => shift(-1)}
-        className="p-2 rounded-lg hover:bg-ctp-surface1 text-ctp-overlay0 hover:text-ctp-text transition-all duration-200 active:scale-90"
-      >
-        <ChevronLeft size={16} />
+    <div className="flex items-center gap-1 rounded-xl border border-border px-1 py-1 bg-bg-card">
+      <button onClick={() => shift(-1)} className="p-2 rounded-lg hover:bg-bg-hover text-text-muted hover:text-text-primary transition-all active:scale-90">
+        <ChevronLeft size={15} />
       </button>
-      <span className="text-sm font-medium text-ctp-subtext1 min-w-[130px] text-center select-none">
+      <span className="text-sm font-medium text-text-secondary min-w-[130px] text-center select-none">
         {MONTHS[month - 1]} {year}
       </span>
-      <button
-        onClick={() => shift(1)}
-        className="p-2 rounded-lg hover:bg-ctp-surface1 text-ctp-overlay0 hover:text-ctp-text transition-all duration-200 active:scale-90"
-      >
-        <ChevronRight size={16} />
+      <button onClick={() => shift(1)} className="p-2 rounded-lg hover:bg-bg-hover text-text-muted hover:text-text-primary transition-all active:scale-90">
+        <ChevronRight size={15} />
       </button>
     </div>
   );
