@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeUp 0.35s ease-out both;
+}
+
+.animate-in-delay-1 { animation-delay: 0.07s; }
+.animate-in-delay-2 { animation-delay: 0.14s; }
+.animate-in-delay-3 { animation-delay: 0.21s; }
+
+.card {
+  @apply bg-ctp-mantle border border-ctp-surface0 rounded-2xl transition-all duration-200;
+}
+
+.card:hover {
+  border-color: #45475a;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+input:focus, select:focus {
+  box-shadow: 0 0 0 3px rgba(180, 190, 254, 0.12);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #45475a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #585b70; }
