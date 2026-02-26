@@ -170,7 +170,7 @@ export default function Dashboard({ incomes, charges, planned, savings = [], set
                     {pieData.map(e => <Cell key={e.name} fill={e.color} />)}
                     <Label content={<CenterLabel value={totalCharges.toFixed(0)} sub={`${currency} / mois`} dark={dark} />} position="center" />
                   </Pie>
-                  <Tooltip {...tooltipStyle} formatter={(v) => [`${v.toFixed(2)} ${currency}`, '']} />
+                  <Tooltip {...tooltipStyle} formatter={(v) => [`${v.toFixed(2)} ${currency}`, '']} cursor={false} />
                 </PieChart>
               </ResponsiveContainer>
               <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 mt-2 w-full">
@@ -205,7 +205,7 @@ export default function Dashboard({ incomes, charges, planned, savings = [], set
                 <CartesianGrid strokeDasharray="3 3" stroke={dark ? '#1e1e2e' : '#e5e7eb'} vertical={false} />
                 <XAxis dataKey="name" tick={{ fontSize: 11, fill: dark ? '#555570' : '#9ca3af' }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 11, fill: dark ? '#555570' : '#9ca3af' }} axisLine={false} tickLine={false} />
-                <Tooltip {...tooltipStyle} formatter={(v) => [`${v.toFixed(2)} ${currency}`, 'Reste a vivre']} />
+                <Tooltip {...tooltipStyle} formatter={(v) => [`${v.toFixed(2)} ${currency}`, 'Reste a vivre']} cursor={{ fill: dark ? 'rgba(255,255,255,0.05)' : 'rgba(99,102,241,0.08)', radius: 4 }} />
                 <Bar dataKey="value" radius={[4, 4, 0, 0]}>
                   {yearData.map((_, i) => (
                     <Cell key={i} fill={i === currentIdx ? '#6366f1' : (dark ? '#1e1e2e' : '#e5e7eb')} />
