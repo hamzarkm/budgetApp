@@ -98,7 +98,7 @@ export default function App() {
 
       <main className="max-w-5xl mx-auto px-3 sm:px-4 py-5 sm:py-8">
         {activeTab === 'overview' && (
-          <Dashboard incomes={incomes} charges={charges} planned={planned} savings={savings} settings={settings} currentMonth={currentMonth} currency={currency} />
+          <Dashboard incomes={incomes} charges={charges} planned={planned} savings={savings} settings={settings} currentMonth={currentMonth} currency={currency} dark={dark} />
         )}
         {activeTab === 'recurring' && (
           <RecurringManager incomes={incomes} charges={charges} onRefresh={refreshAll} currency={currency} />

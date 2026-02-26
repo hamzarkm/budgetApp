@@ -2,13 +2,8 @@ import { PieChart, Pie, Cell, Label, Tooltip, ResponsiveContainer, BarChart, Bar
 import { TrendingUp, TrendingDown, CalendarClock, Wallet, AlertTriangle, PiggyBank } from 'lucide-react';
 import { getCat } from '../api';
 
-function useIsDark() {
-  return document.documentElement.classList.contains('dark');
-}
-
-function CenterLabel({ viewBox, value, sub }) {
+function CenterLabel({ viewBox, value, sub, dark }) {
   const { cx, cy } = viewBox;
-  const dark = useIsDark();
   return (
     <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle">
       <tspan x={cx} dy="-6" fill={dark ? '#f0f0f5' : '#111827'} fontSize="18" fontWeight="700">{value}</tspan>
@@ -24,8 +19,7 @@ function getHealth(percent) {
   return { color: '#ef4444', bg: 'var(--health-red-bg)', label: 'Deficit' };
 }
 
-export default function Dashboard({ incomes, charges, planned, savings = [], settings, currentMonth, currency = 'EUR' }) {
-  const dark = useIsDark();
+export default function Dashboard({ incomes, charges, planned, savings = [], settings, currentMonth, currency = 'EUR', dark = false }) {
   const totalIncome = incomes.filter(i => i.active).reduce((s, i) => s + i.amount, 0);
   const totalCharges = charges.filter(c => c.active).reduce((s, c) => s + c.amount, 0);
   const totalPlanned = planned.reduce((s, p) => s + p.amount, 0);
@@ -174,7 +168,7 @@ export default function Dashboard({ incomes, charges, planned, savings = [], set
                 <PieChart>
                   <Pie data={pieData} dataKey="total" nameKey="name" cx="50%" cy="50%" innerRadius={55} outerRadius={80} paddingAngle={3} strokeWidth={0}>
                     {pieData.map(e => <Cell key={e.name} fill={e.color} />)}
-                    <Label content={<CenterLabel value={totalCharges.toFixed(0)} sub={`${currency} / mois`} />} position="center" />
+                    <Label content={<CenterLabel value={totalCharges.toFixed(0)} sub={`${currency} / mois`} dark={dark} />} position="center" />
                   </Pie>
                   <Tooltip {...tooltipStyle} formatter={(v) => [`${v.toFixed(2)} ${currency}`, '']} />
                 </PieChart>
