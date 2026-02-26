@@ -89,7 +89,7 @@ export default function App() {
               <span className="hidden sm:inline">{label}</span>
               <span className="sm:hidden">{label.split(' ')[0]}</span>
               {activeTab === id && (
-                <span className="absolute bottom-0 left-2 right-2 sm:left-3 sm:right-3 h-[2px] rounded-full bg-accent-indigo" />
+                <span className="absolute bottom-0 left-2 right-2 sm:left-3 sm:right-3 h-[2px] rounded-full" style={{ backgroundColor: '#6366f1' }} />
               )}
             </button>
           ))}

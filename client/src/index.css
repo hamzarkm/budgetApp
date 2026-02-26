@@ -73,8 +73,8 @@
   --alert-border: rgba(239,68,68,0.2);
   --toggle-inactive-bg: #16161f;
   --check-text: #0a0a0f;
-  --today-bg: rgba(99,102,241,0.08);
-  --today-ring: rgba(99,102,241,0.2);
+  --today-bg: rgba(99,102,241,0.15);
+  --today-ring: rgba(99,102,241,0.25);
   --today-badge-bg: rgba(99,102,241,0.15);
   --today-badge-text: #818cf8;
   --icon-green-bg: rgba(16,185,129,0.1);
@@ -88,6 +88,11 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'Anthropic Sans', system-ui, sans-serif;
+}
+
+:root.dark select,
+:root.dark input[type="date"] {
+  color-scheme: dark;
 }
 
 @keyframes fadeUp {

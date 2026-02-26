@@ -31,7 +31,7 @@ export default function SavingsGoals({ savings, onRefresh, currency = 'EUR' }) {
             </div>
             <h3 className="text-sm font-semibold text-text-primary">Objectifs d'epargne</h3>
           </div>
-          <span className="text-sm font-bold text-accent-green">-{totalMonthly.toFixed(2)} {currency}/mois</span>
+          <span className="text-sm font-bold text-accent-green">{totalMonthly > 0 ? `-${totalMonthly.toFixed(2)}` : '0.00'} {currency}/mois</span>
         </div>
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-[1fr_100px_100px_100px_auto] gap-2 mb-5">
@@ -76,7 +76,7 @@ export default function SavingsGoals({ savings, onRefresh, currency = 'EUR' }) {
                     <span className="text-sm text-text-muted">/ {item.target.toFixed(0)} {currency}</span>
                   </div>
                   <div className="h-2 rounded-full bg-bg-input overflow-hidden mb-2">
-                    <div className="h-full rounded-full bg-accent-green transition-all duration-500" style={{ width: `${percent}%` }} />
+                    <div className="h-full rounded-full transition-all duration-500" style={{ width: `${percent}%`, backgroundColor: '#10b981' }} />
                   </div>
                   <div className="flex items-center justify-between text-xs text-text-muted">
                     <span>{percent.toFixed(0)}% atteint</span>

@@ -4,7 +4,7 @@ import { createIncome, updateIncome, deleteIncome, createCharge, updateCharge, d
 
 function Toggle({ active, onClick }) {
   return (
-    <button type="button" onClick={onClick} className={`w-10 h-[22px] rounded-full p-[2px] transition-all duration-200 shrink-0 ${active ? 'bg-accent-green' : 'bg-bg-input border border-border'}`}>
+    <button type="button" onClick={onClick} className={`w-10 h-[22px] rounded-full p-[2px] transition-all duration-200 shrink-0 ${!active ? 'bg-bg-input border border-border' : ''}`} style={active ? { backgroundColor: '#10b981' } : undefined}>
       <div className={`w-[18px] h-[18px] rounded-full bg-white shadow-sm transition-transform duration-200 ${active ? 'translate-x-[18px]' : 'translate-x-0'}`} />
     </button>
   );

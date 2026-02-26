@@ -67,7 +67,7 @@ export default function Settings({ settings, onRefresh }) {
           <div className="flex items-center gap-3 p-3 rounded-xl" style={{ background: 'var(--danger-bg)', border: '1px solid var(--danger-border)' }}>
             <AlertTriangle size={16} className="text-accent-red shrink-0" />
             <span className="text-xs text-accent-red flex-1">Cette action est irreversible. Toutes vos donnees seront supprimees.</span>
-            <button onClick={handleReset} className="px-3 py-1.5 rounded-lg bg-accent-red text-white text-xs font-medium hover:opacity-90 transition-opacity">Confirmer</button>
+            <button onClick={handleReset} className="px-3 py-1.5 rounded-lg text-white text-xs font-medium hover:opacity-90 transition-opacity" style={{ backgroundColor: '#ef4444' }}>Confirmer</button>
             <button onClick={() => setConfirmReset(false)} className="px-3 py-1.5 rounded-lg border border-border text-text-muted text-xs font-medium hover:text-text-primary transition-colors">Annuler</button>
           </div>
         )}

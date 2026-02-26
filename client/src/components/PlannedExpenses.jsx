@@ -141,7 +141,7 @@ export default function PlannedExpenses({ planned, currentMonth, onRefresh, curr
                 const dateStr = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
                 return (
                   <div key={item.id} className={`flex items-center gap-3 py-3.5 transition-all duration-200 ${item.done ? 'opacity-50' : ''}`}>
-                    <button onClick={() => toggleDone(item)} className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all duration-200 ${item.done ? 'bg-accent-green border-accent-green' : 'border-border hover:border-text-muted'}`}>
+                    <button onClick={() => toggleDone(item)} className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all duration-200 ${!item.done ? 'border-border hover:border-text-muted' : ''}`} style={item.done ? { backgroundColor: '#10b981', borderColor: '#10b981' } : undefined}>
                       {item.done && <Check size={11} className="text-white" strokeWidth={3} />}
                     </button>
                     <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: cat.color }} />
