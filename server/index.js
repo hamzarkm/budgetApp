@@ -48,12 +48,42 @@ function crud(path, collection, nextIdKey) {
 crud('incomes', 'incomes', 'nextIncomeId');
 crud('charges', 'charges', 'nextChargeId');
 crud('planned', 'planned', 'nextPlannedId');
+crud('savings', 'savings', 'nextSavingId');
+
+app.post('/api/planned/copy', async (req, res) => {
+  const { fromMonth, toMonth } = req.body;
+  const source = db.data.planned.filter(p => p.date?.startsWith(fromMonth));
+  if (source.length === 0) return res.json({ copied: 0 });
+  const copied = [];
+  for (const p of source) {
+    const newDate = toMonth + p.date.slice(7);
+    const item = { id: db.data.nextPlannedId++, name: p.name, amount: p.amount, category: p.category, date: newDate, done: false };
+    db.data.planned.push(item);
+    copied.push(item);
+  }
+  await db.write();
+  res.json({ copied: copied.length, items: copied });
+});
 
 app.get('/api/settings', (_req, res) => res.json(db.data.settings));
 app.put('/api/settings', async (req, res) => {
   db.data.settings = { ...db.data.settings, ...req.body };
   await db.write();
   res.json(db.data.settings);
+});
+
+app.post('/api/reset', async (_req, res) => {
+  db.data.incomes = [];
+  db.data.charges = [];
+  db.data.planned = [];
+  db.data.savings = [];
+  db.data.settings = { alertThreshold: 300, currency: 'EUR' };
+  db.data.nextIncomeId = 1;
+  db.data.nextChargeId = 1;
+  db.data.nextPlannedId = 1;
+  db.data.nextSavingId = 1;
+  await db.write();
+  res.json({ ok: true });
 });
 
 const distPath = join(__dirname, '../client/dist');

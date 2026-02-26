@@ -10,7 +10,7 @@ function Toggle({ active, onClick }) {
   );
 }
 
-export default function RecurringManager({ incomes, charges, onRefresh }) {
+export default function RecurringManager({ incomes, charges, onRefresh, currency = 'EUR' }) {
   const [incomeForm, setIncomeForm] = useState({ name: '', amount: '', dayOfMonth: '' });
   const [editingIncome, setEditingIncome] = useState(null);
   const [chargeForm, setChargeForm] = useState({ name: '', amount: '', category: '', dayOfMonth: '' });
@@ -50,12 +50,12 @@ export default function RecurringManager({ incomes, charges, onRefresh }) {
       <div className="card p-6">
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'rgba(52,211,153,0.1)' }}>
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-green-bg)' }}>
               <TrendingUp size={15} className="text-accent-green" />
             </div>
             <h3 className="text-sm font-semibold text-text-primary">Revenus mensuels</h3>
           </div>
-          <span className="text-sm font-bold text-accent-green">+{totalIncomes.toFixed(2)} EUR</span>
+          <span className="text-sm font-bold text-accent-green">+{totalIncomes.toFixed(2)} {currency}</span>
         </div>
 
         <form onSubmit={handleIncomeSubmit} className="grid grid-cols-1 sm:grid-cols-[1fr_120px_80px_auto] gap-2 mb-5">
@@ -83,7 +83,7 @@ export default function RecurringManager({ incomes, charges, onRefresh }) {
               <div key={item.id} className={`flex items-center gap-3 py-3.5 transition-opacity duration-200 ${!item.active ? 'opacity-30' : ''}`}>
                 <Toggle active={item.active} onClick={async () => { await updateIncome(item.id, { active: !item.active }); onRefresh(); }} />
                 <span className="flex-1 text-sm font-medium text-text-primary">{item.name}</span>
-                <span className="text-sm tabular-nums text-text-primary font-semibold">{item.amount.toFixed(2)} EUR</span>
+                <span className="text-sm tabular-nums text-text-primary font-semibold">{item.amount.toFixed(2)} {currency}</span>
                 <span className="text-xs text-text-muted w-14 text-right">Le {item.dayOfMonth}</span>
                 <div className="flex gap-0.5">
                   <button onClick={() => setEditingIncome(item)} className="p-1.5 rounded-lg hover:bg-bg-hover text-text-muted hover:text-accent-blue transition-colors"><Pencil size={13} /></button>
@@ -98,12 +98,12 @@ export default function RecurringManager({ incomes, charges, onRefresh }) {
       <div className="card p-6">
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'rgba(248,113,113,0.1)' }}>
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'var(--icon-red-bg)' }}>
               <TrendingDown size={15} className="text-accent-red" />
             </div>
             <h3 className="text-sm font-semibold text-text-primary">Charges fixes</h3>
           </div>
-          <span className="text-sm font-bold text-accent-red">-{totalCharges.toFixed(2)} EUR</span>
+          <span className="text-sm font-bold text-accent-red">-{totalCharges.toFixed(2)} {currency}</span>
         </div>
 
         <form onSubmit={handleChargeSubmit} className="grid grid-cols-1 sm:grid-cols-[1fr_100px_1fr_70px_auto] gap-2 mb-5">
@@ -139,7 +139,7 @@ export default function RecurringManager({ incomes, charges, onRefresh }) {
                   <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: cat.color }} />
                   <span className="flex-1 text-sm font-medium text-text-primary">{item.name}</span>
                   <span className="text-xs text-text-muted hidden sm:inline">{cat.name}</span>
-                  <span className="text-sm tabular-nums text-text-primary font-semibold">{item.amount.toFixed(2)} EUR</span>
+                  <span className="text-sm tabular-nums text-text-primary font-semibold">{item.amount.toFixed(2)} {currency}</span>
                   <span className="text-xs text-text-muted w-14 text-right">Le {item.dayOfMonth}</span>
                   <div className="flex gap-0.5">
                     <button onClick={() => setEditingCharge(item)} className="p-1.5 rounded-lg hover:bg-bg-hover text-text-muted hover:text-accent-blue transition-colors"><Pencil size={13} /></button>

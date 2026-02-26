@@ -21,10 +21,12 @@ const defaultData = {
     { id: 1, name: 'Dentiste', amount: 55, category: 'sante', date: '2026-02-18', done: false },
     { id: 2, name: 'Cadeau anniversaire', amount: 80, category: 'autre', date: '2026-02-22', done: false },
   ],
-  settings: { alertThreshold: 300 },
+  savings: [],
+  settings: { alertThreshold: 300, currency: 'EUR' },
   nextIncomeId: 2,
   nextChargeId: 8,
   nextPlannedId: 3,
+  nextSavingId: 1,
 };
 
 const db = await JSONFilePreset(join(__dirname, 'db.json'), defaultData);

@@ -17,8 +17,16 @@ export const getPlanned = (month) => get(`/api/planned?month=${month}`);
 export const createPlanned = (d) => post('/api/planned', d);
 export const updatePlanned = (id, d) => put(`/api/planned/${id}`, d);
 export const deletePlanned = (id) => del(`/api/planned/${id}`);
+export const copyPlanned = (fromMonth, toMonth) => post('/api/planned/copy', { fromMonth, toMonth });
+
+export const getSavings = () => get('/api/savings');
+export const createSaving = (d) => post('/api/savings', d);
+export const updateSaving = (id, d) => put(`/api/savings/${id}`, d);
+export const deleteSaving = (id) => del(`/api/savings/${id}`);
 
 export const getSettings = () => get('/api/settings');
+export const updateSettings = (d) => put('/api/settings', d);
+export const resetAllData = () => post('/api/reset', {});
 
 export const CATEGORIES = [
   { id: 'logement', name: 'Logement', icon: 'home', color: '#fab387' },
